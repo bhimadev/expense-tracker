@@ -12,10 +12,12 @@ import com.bhimadev.expense_tracker.repository.UserRepository;
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public AuthResponse register(RegisterRequest registerRequest) {
@@ -25,6 +27,7 @@ public class AuthService {
 
         User user = new User(registerRequest.name(), registerRequest.email(), passwordEncoder.encode(registerRequest.password()));
         userRepository.save(user);
-        return new AuthResponse("sample-token Rakashpal Singh");
+        String token = jwtService.generateToken(user);
+        return new AuthResponse(token);
     }
 }
