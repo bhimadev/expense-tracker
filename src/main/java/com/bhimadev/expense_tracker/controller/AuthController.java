@@ -31,6 +31,6 @@ public class AuthController {
     
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(new AuthResponse("sample-token"));
+        return ResponseEntity.ok(authService.login(loginRequest));
     }
 }
