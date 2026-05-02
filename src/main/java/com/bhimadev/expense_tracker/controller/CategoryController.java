@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bhimadev.expense_tracker.dto.CategoryRequest;
 import com.bhimadev.expense_tracker.dto.CategoryResponse;
-import com.bhimadev.expense_tracker.entity.Category;
 import com.bhimadev.expense_tracker.payload.ApiResponse;
 import com.bhimadev.expense_tracker.payload.ResponseHandler;
 import com.bhimadev.expense_tracker.service.CategoryService;
@@ -25,7 +24,7 @@ public class CategoryController {
     
     @PostMapping
     public ResponseEntity<ApiResponse<CategoryResponse>> store(@Valid @RequestBody CategoryRequest request,@AuthenticationPrincipal UserDetails userDetails) {
-CategoryResponse category = categoryService.addCategory(request,userDetails.getUsername());
+        CategoryResponse category = categoryService.addCategory(request,userDetails.getUsername());
         return  ResponseHandler.created("Category created successfully", category);
     }
 }
