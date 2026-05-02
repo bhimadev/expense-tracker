@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bhimadev.expense_tracker.dto.AuthResponse;
 import com.bhimadev.expense_tracker.dto.LoginRequest;
 import com.bhimadev.expense_tracker.dto.RegisterRequest;
+import com.bhimadev.expense_tracker.payload.ApiResponse;
+import com.bhimadev.expense_tracker.payload.ResponseHandler;
 import com.bhimadev.expense_tracker.service.AuthService;
 
 import jakarta.validation.Valid;
@@ -23,14 +25,14 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AuthResponse> register(
+    public ResponseEntity<ApiResponse<AuthResponse>> register(
         @Valid @RequestBody RegisterRequest registerRequest
     ) {
-        return ResponseEntity.ok(authService.register(registerRequest));
+        return ResponseHandler.success(null, authService.register(registerRequest));
     }
     
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        return ResponseEntity.ok(authService.login(loginRequest));
+    public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest loginRequest) {
+        return ResponseHandler.success(null, authService.login(loginRequest));
     }
 }
