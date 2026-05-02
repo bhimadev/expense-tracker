@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.bhimadev.expense_tracker.dto.AccountAddRquest;
+import com.bhimadev.expense_tracker.dto.AccountResponse;
 import com.bhimadev.expense_tracker.entity.Account;
-import com.bhimadev.expense_tracker.entity.User;
 import com.bhimadev.expense_tracker.payload.ApiResponse;
 import com.bhimadev.expense_tracker.payload.ResponseHandler;
 import com.bhimadev.expense_tracker.service.AccountService;
@@ -30,15 +30,14 @@ public class AccountController {
         this.accountService = accountService;
     }
     @GetMapping
-    public ResponseEntity<ApiResponse<List<Account>>> index(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<ApiResponse<List<AccountResponse>>> index(@AuthenticationPrincipal UserDetails userDetails) {
     System.out.println("Authenticated user: " + userDetails.getUsername());
-       List<Account> accounts = accountService.getAccounts(userDetails.getUsername());
+       List<AccountResponse> accounts = accountService.getAccounts(userDetails.getUsername());
         return ResponseHandler.success(null, accounts);
     }
 @PostMapping
-    public ResponseEntity<ApiResponse<Account>> store(@Valid @RequestBody AccountAddRquest request, @AuthenticationPrincipal UserDetails userDetails) {
-        Account account = accountService.addAccount(request, userDetails.getUsername());
-        
+    public ResponseEntity<ApiResponse<AccountResponse>> store(@Valid @RequestBody AccountAddRquest request, @AuthenticationPrincipal UserDetails userDetails) {
+        AccountResponse account = accountService.addAccount(request, userDetails.getUsername());
         return ResponseHandler.created("Account created successfully",account);
     
  }
