@@ -1,13 +1,18 @@
 package com.bhimadev.expense_tracker.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "accounts")
 public class Account {
@@ -33,4 +38,11 @@ public class Account {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+   public Account(User user, String accountName, AccountType accountType, BigDecimal balance) {
+        this.user = user;
+        this.accountName = accountName;
+        this.accountType = accountType;
+        this.balance = balance;
+    }
 }

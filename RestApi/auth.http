@@ -1,5 +1,6 @@
 
 @baseUrl = http://localhost:8080
+@token = {{login.response.body.token}}
 
 ### Login
 # @name login
@@ -22,3 +23,16 @@ Content-Type: application/json
   "email": "rakash2@example.com",
   "password": "password123"
 }
+
+### Login
+# @name Add Bank Account
+POST {{baseUrl}}/api/accounts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "accountName": "Rakashpal's Savings",
+  "accountType": "SAVINGS",
+  "balance": 1000.00
+}
+
