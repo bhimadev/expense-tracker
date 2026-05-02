@@ -43,3 +43,14 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 
+### Category Creation
+# @name Add Category
+POST {{baseUrl}}/api/category
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Groceries",
+  "type": "EXPENSE"
+}
+

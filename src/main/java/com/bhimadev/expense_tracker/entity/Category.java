@@ -1,12 +1,18 @@
 package com.bhimadev.expense_tracker.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -35,4 +41,10 @@ public class Category {
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    public Category(String name, CategoryType type, User user) {
+        this.name = name;
+        this.type = type;
+        this.user = user;
+    }
 }
