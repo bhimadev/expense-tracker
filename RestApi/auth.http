@@ -31,9 +31,9 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "accountName": "Rakashpal's Savings",
+  "accountName": "Second Account",
   "accountType": "SAVINGS",
-  "balance": 1000.00
+  "balance": 10000.00
 }
 
 ### Account Get
