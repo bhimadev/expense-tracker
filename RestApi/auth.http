@@ -1,6 +1,6 @@
 
 @baseUrl = http://localhost:8080
-@token = {{login.response.body.token}}
+@token = {{login.response.body.data.token}}
 
 ### Login
 # @name login
@@ -24,8 +24,8 @@ Content-Type: application/json
   "password": "password123"
 }
 
-### Login
-# @name Add Bank Account
+### Account Creation
+# @name Add  Account
 POST {{baseUrl}}/api/accounts
 Content-Type: application/json
 Authorization: Bearer {{token}}
@@ -35,4 +35,11 @@ Authorization: Bearer {{token}}
   "accountType": "SAVINGS",
   "balance": 1000.00
 }
+
+### Account Get
+# @name Get Added Account
+GET  {{baseUrl}}/api/accounts
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
 

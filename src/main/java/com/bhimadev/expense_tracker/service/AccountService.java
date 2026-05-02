@@ -1,5 +1,7 @@
 package com.bhimadev.expense_tracker.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.bhimadev.expense_tracker.dto.AccountAddRquest;
@@ -24,6 +26,11 @@ public class AccountService {
     Account account1=accountRepository.save(account);
     return account1;
 
+   }
+
+   public List<Account> getAccounts(String email) {
+    User user = userRepository.findByEmail(email).orElseThrow();
+    return accountRepository.findByUser(user);
    }
        
 }
